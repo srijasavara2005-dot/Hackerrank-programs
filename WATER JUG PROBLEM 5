@@ -1,0 +1,21 @@
+#include <stdio.h>
+long long gcd(long long a, long long b)
+{
+    while (b != 0)
+    {
+        long long temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+int main()
+{
+    long long A, B, T;
+    scanf("%lld %lld %lld", &A, &B, &T);
+    if (T <= (A > B ? A : B) && T % gcd(A, B) == 0)
+        printf("YES");
+    else
+        printf("NO");
+    return 0;
+}
