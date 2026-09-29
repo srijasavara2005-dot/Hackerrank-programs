@@ -1,0 +1,32 @@
+#include <stdio.h>
+int main() {
+    long long a, b;
+    int shift = 0;
+    scanf("%lld %lld", &a, &b);
+    if (a == 0) {
+        printf("%lld", b);
+        return 0;
+    }
+    if (b == 0) {
+        printf("%lld", a);
+        return 0;
+    }
+    while (((a | b) & 1) == 0) {
+        a >>= 1;
+        b >>= 1;
+        shift++;
+    }
+    while ((a & 1) == 0)
+        a >>= 1;
+    while (b != 0) {
+        while ((b & 1) == 0)
+            b >>= 1;
+        if (a > b)
+            a = a - b;
+        else
+            b = b - a;
+    }
+    a <<= shift;
+    printf("%lld", a);
+    return 0;
+}
