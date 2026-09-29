@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int main() {
+    int n, m, a[1000][1000];
+    scanf("%d %d", &n, &m);
+
+    for(int i=0;i<n;i++)
+        for(int j=0;j<m;j++)
+            scanf("%d",&a[i][j]);
+
+    int t=0,b=n-1,l=0,r=m-1;
+
+    while(t<=b && l<=r) {
+        for(int j=l;j<=r;j++)
+         printf("%d ",a[t][j]);
+        t++;
+
+        for(int i=t;i<=b;i++)
+         printf("%d ",a[i][r]);
+        r--;
+
+        for(int j=r;j>=l && t<=b;j--) 
+        printf("%d ",a[b][j]);
+        b--;
+
+        for(int i=b;i>=t && l<=r;i--)
+         printf("%d ",a[i][l]);
+        l++;
+    }
+
+    return 0;
+}
