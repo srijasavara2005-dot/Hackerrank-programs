@@ -1,0 +1,15 @@
+#include <stdio.h>
+int main()
+{
+    unsigned long long n;
+    int count = 0;
+    scanf("%llu", &n);
+    while (n != 0)
+    {
+        if (n % 2 == 1)
+            count++;
+        n = n / 2;
+    }
+    printf("%d", count);
+    return 0;
+}
