@@ -1,0 +1,22 @@
+s = input()
+seen = 0
+duplicates = 0
+for ch in s:
+    pos = ord(ch) - ord('a')
+    mask = 1 << pos
+    if seen & mask:
+        duplicates |= mask
+    else:
+        seen |= mask
+result = []
+printed = 0
+for ch in s:
+    pos = ord(ch) - ord('a')
+    mask = 1 << pos
+    if duplicates & mask and not (printed & mask):
+        result.append(ch)
+        printed |= mask
+if result:
+    print(*result)
+else:
+    print("No duplicates")
