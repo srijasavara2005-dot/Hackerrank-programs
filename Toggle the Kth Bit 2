@@ -1,0 +1,10 @@
+#include <stdio.h>
+int main()
+{
+    unsigned long long n;
+    int k;
+    scanf("%llu %d", &n, &k);
+    n = n ^ (1ULL << k);
+    printf("%llu", n);
+    return 0;
+}
