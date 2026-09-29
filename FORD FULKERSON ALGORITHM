@@ -1,0 +1,40 @@
+#include <stdio.h>
+int n, a[100][100], visit[100];
+int findPath(int s, int t, int flow) {
+    if (s == t)
+        return flow;
+    visit[s] = 1;
+    for (int i = 0; i < n; i++) {
+        if (a[s][i] > 0 && visit[i] == 0) {
+            int min = flow;
+            if (a[s][i] < min)
+                min = a[s][i];
+            int x = findPath(i, t, min);
+            if (x > 0) {
+                a[s][i] -= x;
+                a[i][s] += x;
+                return x;
+            }
+        }
+    }
+    return 0;
+}
+int main() {
+    int e, u, v, c;
+    int flow, total = 0;
+    scanf("%d %d", &n, &e);
+    for (int i = 0; i < e; i++) {
+        scanf("%d %d %d", &u, &v, &c);
+        a[u][v] += c;
+    }
+    while (1) {
+        for (int i = 0; i < n; i++)
+            visit[i] = 0;
+        flow = findPath(0, n - 1, 1000000);
+        if (flow == 0)
+            break;
+        total += flow;
+    }
+    printf("%d", total);
+    return 0;
+}
